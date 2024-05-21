@@ -9,4 +9,14 @@
     <artifactId>clinica-agendamento</artifactId>
     <name>Archetype - clinica-agendamento</name>
     <url>http://maven.apache.org</url>
+    <packaging>jar</packaging>
+    <dependencies>
+        <!-- Spring Boot Starter Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>3.2.5</version>
+        </dependency>
+        <!-- Outras dependências do projeto -->
+    </dependencies>
 </project>
