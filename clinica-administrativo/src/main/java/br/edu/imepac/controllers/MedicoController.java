@@ -44,15 +44,15 @@ public class MedicoController {
         }
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<MedicoDto> updateMedico(@PathVariable Long id, @RequestBody MedicoDto medicoDetails) {
-//        MedicoDto updatedMedico = medicoService.update(id, medicoDetails);
-//        if (updatedMedico != null) {
-//            return new ResponseEntity<>(updatedMedico, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @PutMapping("/{id}")
+   public ResponseEntity<MedicoDto> updateMedico(@PathVariable Long id, @RequestBody MedicoDto medicoDetails) {
+       MedicoDto updatedMedico = medicoService.update(id, medicoDetails);
+      if (updatedMedico != null) {
+           return new ResponseEntity<>(updatedMedico, HttpStatus.OK);
+      } else {
+           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+       }
+    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
