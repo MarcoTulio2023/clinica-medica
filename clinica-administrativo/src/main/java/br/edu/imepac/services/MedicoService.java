@@ -44,7 +44,6 @@ public class MedicoService {
             // Mapeia os detalhes do DTO para o modelo, exceto a especialidade
             medicoModel.setNome(medicoDetails.getNome());
             medicoModel.setCrm(medicoDetails.getCrm());
-            medicoModel.setSenha(medicoDetails.getSenha());
 
             // Lida com a especialidade separadamente
             if (medicoDetails.getEspecialidade() != null) {
