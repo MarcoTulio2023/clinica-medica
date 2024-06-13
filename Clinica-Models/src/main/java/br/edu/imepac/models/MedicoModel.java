@@ -15,6 +15,9 @@ public class MedicoModel {
     private String crm;
     private String senha;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "especialidade_id")
     private EspecialidadeModel especialidade;
+
+
 }

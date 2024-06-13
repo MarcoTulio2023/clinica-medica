@@ -12,8 +12,5 @@ public class ClinicaAgendamento {
     }
 
 
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
+
 }

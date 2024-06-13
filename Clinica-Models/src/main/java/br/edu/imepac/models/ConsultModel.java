@@ -1,5 +1,6 @@
 package br.edu.imepac.model;
 
+import br.edu.imepac.models.MedicoModel;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,4 +26,10 @@ public class ConsultModel {
     protected void onCreate() {
         data_hora_criado = LocalDateTime.now();
     }
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private MedicoModel medico;
+
+
 }

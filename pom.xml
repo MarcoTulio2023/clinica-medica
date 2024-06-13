@@ -18,6 +18,7 @@
         <module>clinica-administrativo</module>
         <module>clinica-agendamento</module>
         <module>clinica-atendimento</module>
+        <module>Clinica-Models</module>
     </modules>
 
     <dependencyManagement>

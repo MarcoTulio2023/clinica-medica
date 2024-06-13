@@ -1,9 +1,9 @@
 package br.edu.imepac.service;
 
-import br.edu.imepac.Repository.ConsultRepository;
 import br.edu.imepac.dto.ConsultCreateRequest;
 import br.edu.imepac.dto.ConsultDTO;
 import br.edu.imepac.model.ConsultModel;
+import br.edu.imepac.repositories.ConsultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
