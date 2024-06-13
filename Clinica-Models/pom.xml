@@ -6,11 +6,17 @@
         <artifactId>clinica-medica</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>clinica-administrativo</artifactId>
-    <name>Archetype - clinica-administrativo</name>
+    <artifactId>Clinica-Models</artifactId>
+    <packaging>war</packaging>
+    <name>Clinica-Models Maven Webapp</name>
     <url>http://maven.apache.org</url>
-    <packaging>jar</packaging>
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -31,10 +37,8 @@
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
         </dependency>
-        <dependency>
-            <groupId>br.edu.imepac</groupId>
-            <artifactId>Clinica-Models</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
+    <build>
+        <finalName>Clinica-Models</finalName>
+    </build>
 </project>
