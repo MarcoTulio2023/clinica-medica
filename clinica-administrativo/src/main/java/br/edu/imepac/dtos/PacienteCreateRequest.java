@@ -19,5 +19,5 @@ public class PacienteCreateRequest {
     private Date dataNascimento;
     private String sexo;
     private String temConvenio;
-    private Integer codigoConvenio;
+    private Long convenioId;
 }
