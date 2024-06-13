@@ -2,7 +2,6 @@ package br.edu.imepac.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.util.Date;
 
 @Entity
@@ -28,6 +27,9 @@ public class PacienteModel {
     private Date dataNascimento;
     private String sexo;
     private String temConvenio;
-    private Integer codigoConvenio;
+
+    @ManyToOne
+    @JoinColumn(name = "convenio_id")
+    private ConvenioModel convenio;
 
 }

@@ -15,6 +15,6 @@ public class MedicoModel {
     private String crm;
     private String senha;
 
-    @OneToOne
+    @ManyToOne
     private EspecialidadeModel especialidade;
 }

@@ -2,7 +2,9 @@ package br.edu.imepac.services;
 
 import br.edu.imepac.dtos.PacienteCreateRequest;
 import br.edu.imepac.dtos.PacienteDto;
+import br.edu.imepac.models.ConvenioModel;
 import br.edu.imepac.models.PacienteModel;
+import br.edu.imepac.repositories.ConvenioRepository;
 import br.edu.imepac.repositories.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ public class PacienteService {
 
     @Autowired
     private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private ConvenioRepository convenioRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -37,7 +42,7 @@ public class PacienteService {
 
         if (optionalPaciente.isPresent()) {
             PacienteModel pacienteModel = optionalPaciente.get();
-            
+
             pacienteModel.setNome(pacienteDetails.getNome());
             pacienteModel.setNumeroRg(pacienteDetails.getNumeroRg());
             pacienteModel.setOrgaoEmissor(pacienteDetails.getOrgaoEmissor());
@@ -52,7 +57,11 @@ public class PacienteService {
             pacienteModel.setDataNascimento(pacienteDetails.getDataNascimento());
             pacienteModel.setSexo(pacienteDetails.getSexo());
             pacienteModel.setTemConvenio(pacienteDetails.getTemConvenio());
-            pacienteModel.setCodigoConvenio(pacienteDetails.getCodigoConvenio());
+
+            if (pacienteDetails.getConvenio() != null) {
+                Optional<ConvenioModel> convenio = convenioRepository.findById(pacienteDetails.getConvenio().getId());
+                convenio.ifPresent(pacienteModel::setConvenio);
+            }
 
             PacienteModel updatedPaciente = pacienteRepository.save(pacienteModel);
             return modelMapper.map(updatedPaciente, PacienteDto.class);
@@ -63,6 +72,12 @@ public class PacienteService {
 
     public PacienteDto save(PacienteCreateRequest pacienteRequest) {
         PacienteModel pacienteModel = modelMapper.map(pacienteRequest, PacienteModel.class);
+
+        if (pacienteRequest.getConvenioId() != null) {
+            Optional<ConvenioModel> convenio = convenioRepository.findById(pacienteRequest.getConvenioId());
+            convenio.ifPresent(pacienteModel::setConvenio);
+        }
+
         PacienteModel savedPaciente = pacienteRepository.save(pacienteModel);
         return modelMapper.map(savedPaciente, PacienteDto.class);
     }

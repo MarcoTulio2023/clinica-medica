@@ -1,7 +1,6 @@
 package br.edu.imepac.dtos;
 
 import lombok.Data;
-
 import java.util.Date;
 
 @Data
@@ -21,5 +20,5 @@ public class PacienteDto {
     private Date dataNascimento;
     private String sexo;
     private String temConvenio;
-    private Integer codigoConvenio;
+    private ConvenioDto convenio;
 }
