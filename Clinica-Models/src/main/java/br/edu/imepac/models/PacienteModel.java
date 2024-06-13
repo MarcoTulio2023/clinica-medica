@@ -11,7 +11,8 @@ public class PacienteModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_paciente;
+
     private String nome;
     private String numeroRg;
     private String orgaoEmissor;
