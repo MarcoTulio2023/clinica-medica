@@ -1,6 +1,7 @@
 package br.edu.imepac.model;
 
 import br.edu.imepac.models.MedicoModel;
+import br.edu.imepac.models.PacienteModel;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,8 +29,12 @@ public class ConsultModel {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_medico")
     private MedicoModel medico;
+
+    @ManyToOne
+    @JoinColumn(name = "id_paciente")
+    private PacienteModel paciente;
 
 
 }
