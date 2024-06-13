@@ -8,8 +8,11 @@ import lombok.Data;
 @Data
 public class ConsultDTO {
     private Long registro_agenda;
-    private String data_hora;
+    private String hora_agenda;
+    private String data_agenda;
     private boolean retorno;
     private boolean cancelado;
     private String motivo_cancelamento;
+
+
 }
