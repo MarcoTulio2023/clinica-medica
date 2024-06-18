@@ -37,6 +37,7 @@
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
     </dependencies>
     <build>
         <finalName>Clinica-Models</finalName>

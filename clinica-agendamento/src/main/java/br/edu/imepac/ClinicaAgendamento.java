@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+
 public class ClinicaAgendamento {
     public static void main(String[] args) {
         SpringApplication.run(ClinicaAgendamento.class, args);

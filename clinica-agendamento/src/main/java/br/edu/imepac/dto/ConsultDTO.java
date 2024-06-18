@@ -2,6 +2,7 @@ package br.edu.imepac.dto;
 
 import br.edu.imepac.models.MedicoModel;
 import br.edu.imepac.models.PacienteModel;
+import br.edu.imepac.models.UsuarioModel;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,5 +18,6 @@ public class ConsultDTO {
     private String motivo_cancelamento;
     private MedicoModel medico;
     private PacienteModel paciente;
+    private UsuarioModel usuario;
 
 }
