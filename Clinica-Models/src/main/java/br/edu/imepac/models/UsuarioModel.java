@@ -10,7 +10,7 @@ public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_usuario;
     private String nome;
     private String senha;
 }
