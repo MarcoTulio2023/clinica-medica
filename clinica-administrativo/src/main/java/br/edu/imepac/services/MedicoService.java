@@ -51,8 +51,9 @@ public class MedicoService {
                 optionalEspecialidade.ifPresent(medicoModel::setEspecialidade);
             }
 
-            MedicoModel updatedMedico = medicoRepository.save(medicoModel);
-            return modelMapper.map(updatedMedico, MedicoDto.class);
+            MedicoModel updatedmedico = medicoRepository.save(medicoModel);
+            MedicoDto medicoDto = new MedicoDto();
+            medicoDto.setId();
         } else {
             return null;
         }
