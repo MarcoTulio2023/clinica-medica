@@ -1,4 +1,4 @@
-package br.edu.imepac.testes;
+package test.edu.imepac.services;
 
 import br.edu.imepac.dtos.PacienteCreateRequest;
 import br.edu.imepac.dtos.PacienteDto;
@@ -24,7 +24,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PacienteServiceTest {
+public class PacientesTestService {
 
     @Mock
     private PacienteRepository pacienteRepository;
@@ -44,7 +44,7 @@ public class PacienteServiceTest {
     private ConvenioModel convenioModel;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         pacienteModel = new PacienteModel();
         pacienteModel.setId_paciente(1L);
         pacienteModel.setNome("John Doe");
@@ -61,14 +61,14 @@ public class PacienteServiceTest {
     }
 
     @Test
-    void testDelete() {
+    public void testDelete() {
         doNothing().when(pacienteRepository).deleteById(1L);
         pacienteService.delete(1L);
         verify(pacienteRepository, times(1)).deleteById(1L);
     }
 
     @Test
-    void testFindAll() {
+    public void testFindAll() {
         when(pacienteRepository.findAll()).thenReturn(Arrays.asList(pacienteModel));
         when(modelMapper.map(any(PacienteModel.class), eq(PacienteDto.class))).thenReturn(pacienteDto);
 
@@ -78,7 +78,7 @@ public class PacienteServiceTest {
     }
 
     @Test
-    void testUpdate() {
+    public void testUpdate() {
         when(pacienteRepository.findById(1L)).thenReturn(Optional.of(pacienteModel));
         when(pacienteRepository.save(any(PacienteModel.class))).thenReturn(pacienteModel);
         when(modelMapper.map(any(PacienteModel.class), eq(PacienteDto.class))).thenReturn(pacienteDto);
@@ -89,7 +89,7 @@ public class PacienteServiceTest {
     }
 
     @Test
-    void testUpdateNotFound() {
+    public void testUpdateNotFound() {
         when(pacienteRepository.findById(1L)).thenReturn(Optional.empty());
 
         PacienteDto result = pacienteService.update(1L, pacienteDto);
@@ -97,7 +97,7 @@ public class PacienteServiceTest {
     }
 
     @Test
-    void testSave() {
+    public void testSave() {
         when(modelMapper.map(any(PacienteCreateRequest.class), eq(PacienteModel.class))).thenReturn(pacienteModel);
         when(pacienteRepository.save(any(PacienteModel.class))).thenReturn(pacienteModel);
         when(modelMapper.map(any(PacienteModel.class), eq(PacienteDto.class))).thenReturn(pacienteDto);
@@ -108,7 +108,7 @@ public class PacienteServiceTest {
     }
 
     @Test
-    void testFindById() {
+    public void testFindById() {
         when(pacienteRepository.findById(1L)).thenReturn(Optional.of(pacienteModel));
         when(modelMapper.map(any(PacienteModel.class), eq(PacienteDto.class))).thenReturn(pacienteDto);
 
@@ -118,7 +118,7 @@ public class PacienteServiceTest {
     }
 
     @Test
-    void testFindByIdNotFound() {
+    public void testFindByIdNotFound() {
         when(pacienteRepository.findById(1L)).thenReturn(Optional.empty());
 
         PacienteDto result = pacienteService.findById(1L);

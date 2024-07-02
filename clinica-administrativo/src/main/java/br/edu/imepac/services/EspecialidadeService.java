@@ -1,7 +1,9 @@
 package br.edu.imepac.services;
 
+import br.edu.imepac.dtos.ConvenioDto;
 import br.edu.imepac.dtos.EspecialidadeCreateRequest;
 import br.edu.imepac.dtos.EspecialidadeDto;
+import br.edu.imepac.models.ConvenioModel;
 import br.edu.imepac.models.EspecialidadeModel;
 import br.edu.imepac.repositories.EspecialidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +39,18 @@ public class EspecialidadeService {
 
         if (optionalEspecialidade.isPresent()) {
             EspecialidadeModel especialidadeModel = optionalEspecialidade.get();
+            especialidadeModel.setId(especialidadeDetails.getId());
+            especialidadeModel.setNome(especialidadeDetails.getNome());
+            especialidadeModel.setDescricao(especialidadeDetails.getDescricao());
 
-            // Mapeia as propriedades do DTO para a entidade existente
-            modelMapper.map(especialidadeDetails, especialidadeModel);
+            EspecialidadeModel updatesEspeccialidade = especialidadeRepository.save(especialidadeModel);
 
-            EspecialidadeModel updatedEspecialidade = especialidadeRepository.save(especialidadeModel);
+            EspecialidadeDto especialidadeDto = new EspecialidadeDto();
+            especialidadeDto.setId(updatesEspeccialidade.getId());
+            especialidadeDto.setNome(updatesEspeccialidade.getNome());
+            especialidadeDto.setDescricao(updatesEspeccialidade.getDescricao());
 
-            // Converte a entidade atualizada de volta para DTO
-            return modelMapper.map(updatedEspecialidade, EspecialidadeDto.class);
+            return especialidadeDto;
         } else {
             return null;
         }

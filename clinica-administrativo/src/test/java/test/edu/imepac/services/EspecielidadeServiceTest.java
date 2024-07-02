@@ -1,4 +1,4 @@
-package br.edu.imepac.testes;
+package test.edu.imepac.services;
 
 import br.edu.imepac.dtos.EspecialidadeCreateRequest;
 import br.edu.imepac.dtos.EspecialidadeDto;
@@ -19,11 +19,10 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EspecialidadeServiceTest {
+public class EspecielidadeServiceTest {
 
     @Mock
     private EspecialidadeRepository especialidadeRepository;
@@ -39,7 +38,7 @@ public class EspecialidadeServiceTest {
     private EspecialidadeCreateRequest especialidadeCreateRequest;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         especialidadeModel = new EspecialidadeModel();
         especialidadeModel.setId(1L);
         especialidadeModel.setNome("Cardiology");
@@ -53,72 +52,105 @@ public class EspecialidadeServiceTest {
     }
 
     @Test
-    void testDelete() {
+    public void testDelete() {
         doNothing().when(especialidadeRepository).deleteById(1L);
         especialidadeService.delete(1L);
         verify(especialidadeRepository, times(1)).deleteById(1L);
     }
 
     @Test
-    void testFindAll() {
+    public void testFindAll() {
         when(especialidadeRepository.findAll()).thenReturn(Arrays.asList(especialidadeModel));
         when(modelMapper.map(any(EspecialidadeModel.class), eq(EspecialidadeDto.class))).thenReturn(especialidadeDto);
+
         List<EspecialidadeDto> result = especialidadeService.findAll();
+
         assertNotNull(result);
         assertEquals(1, result.size());
         assertEquals("Cardiology", result.get(0).getNome());
     }
 
     @Test
-    void testUpdate() {
-        when(especialidadeRepository.findById(1L)).thenReturn(Optional.of(especialidadeModel));
-        when(especialidadeRepository.save(any(EspecialidadeModel.class))).thenReturn(especialidadeModel);
+    public void testUpdateEspecialidadeFound() {
+        // Arrange
+        Long id = 1L;
+        EspecialidadeDto especialidadeDetails = new EspecialidadeDto();
+        especialidadeDetails.setId(id);
+        especialidadeDetails.setNome("Updated Name");
+        especialidadeDetails.setDescricao("Updated Description");
 
-        doReturn(especialidadeModel).when(modelMapper).map(eq(especialidadeDto), any(EspecialidadeModel.class));
-        doReturn(especialidadeDto).when(modelMapper).map(any(EspecialidadeModel.class), eq(EspecialidadeDto.class));
+        EspecialidadeModel existingEspecialidade = new EspecialidadeModel();
+        existingEspecialidade.setId(id);
+        existingEspecialidade.setNome("Old Name");
+        existingEspecialidade.setDescricao("Old Description");
 
-        EspecialidadeDto result = especialidadeService.update(1L, especialidadeDto);
-        assertNotNull(result);
-        assertEquals("Cardiology", result.getNome());
+        when(especialidadeRepository.findById(id)).thenReturn(Optional.of(existingEspecialidade));
+        when(especialidadeRepository.save(any(EspecialidadeModel.class))).thenReturn(existingEspecialidade);
 
-        verify(especialidadeRepository, times(1)).findById(1L);
-        verify(especialidadeRepository, times(1)).save(especialidadeModel);
-        verify(modelMapper, times(1)).map(eq(especialidadeDto), any(EspecialidadeModel.class));
-        verify(modelMapper, times(1)).map(any(EspecialidadeModel.class), eq(EspecialidadeDto.class));
+        // Act
+        EspecialidadeDto updatedEspecialidade = especialidadeService.update(id, especialidadeDetails);
+
+        // Assert
+        assertNotNull(updatedEspecialidade);
+        assertEquals(especialidadeDetails.getId(), updatedEspecialidade.getId());
+        assertEquals(especialidadeDetails.getNome(), updatedEspecialidade.getNome());
+        assertEquals(especialidadeDetails.getDescricao(), updatedEspecialidade.getDescricao());
+
+        verify(especialidadeRepository, times(1)).findById(id);
+        verify(especialidadeRepository, times(1)).save(any(EspecialidadeModel.class));
     }
 
     @Test
-    void testUpdate_NotFound() {
-        when(especialidadeRepository.findById(1L)).thenReturn(Optional.empty());
-        EspecialidadeDto result = especialidadeService.update(1L, especialidadeDto);
-        assertNull(result);
+    public void testUpdateEspecialidadeNotFound() {
+        // Arrange
+        Long id = 1L;
+        EspecialidadeDto especialidadeDetails = new EspecialidadeDto();
+        especialidadeDetails.setId(id);
+        especialidadeDetails.setNome("Updated Name");
+        especialidadeDetails.setDescricao("Updated Description");
+
+        when(especialidadeRepository.findById(id)).thenReturn(Optional.empty());
+
+        // Act
+        EspecialidadeDto updatedEspecialidade = especialidadeService.update(id, especialidadeDetails);
+
+        // Assert
+        assertNull(updatedEspecialidade);
+
+        verify(especialidadeRepository, times(1)).findById(id);
+        verify(especialidadeRepository, times(0)).save(any(EspecialidadeModel.class));
     }
 
+
     @Test
-    void testSave() {
+    public void testSave() {
         when(modelMapper.map(any(EspecialidadeCreateRequest.class), eq(EspecialidadeModel.class))).thenReturn(especialidadeModel);
         when(especialidadeRepository.save(any(EspecialidadeModel.class))).thenReturn(especialidadeModel);
         when(modelMapper.map(any(EspecialidadeModel.class), eq(EspecialidadeDto.class))).thenReturn(especialidadeDto);
 
         EspecialidadeDto result = especialidadeService.save(especialidadeCreateRequest);
+
         assertNotNull(result);
         assertEquals("Cardiology", result.getNome());
     }
 
     @Test
-    void testFindById() {
+    public void testFindById() {
         when(especialidadeRepository.findById(1L)).thenReturn(Optional.of(especialidadeModel));
         when(modelMapper.map(any(EspecialidadeModel.class), eq(EspecialidadeDto.class))).thenReturn(especialidadeDto);
 
         EspecialidadeDto result = especialidadeService.findById(1L);
+
         assertNotNull(result);
         assertEquals("Cardiology", result.getNome());
     }
 
     @Test
-    void testFindById_NotFound() {
+    public void testFindById_NotFound() {
         when(especialidadeRepository.findById(1L)).thenReturn(Optional.empty());
+
         EspecialidadeDto result = especialidadeService.findById(1L);
+
         assertNull(result);
     }
 }

@@ -1,4 +1,4 @@
-package br.edu.imepac.testes;
+package test.edu.imepac.services;
 
 import br.edu.imepac.dtos.UsuarioCreateRequest;
 import br.edu.imepac.dtos.UsuarioDto;
@@ -7,41 +7,30 @@ import br.edu.imepac.repositories.UsuarioRepository;
 import br.edu.imepac.services.UsuarioService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-/*
-The warnings you are seeing are related to the dynamic loading
-of Java agents, specifically the Byte Buddy agent used by
-Mockito for creating mock objects. These warnings are not
-critical and do not affect the success of your tests,
-but they indicate that future versions of the JVM may
-change how dynamic agent loading is handled.
-*/
-
 @ExtendWith(MockitoExtension.class)
-public class UsuarioServiceTest {
+public class UsuarioServieTest {
+
+    @InjectMocks
+    private UsuarioService usuarioService;
 
     @Mock
     private UsuarioRepository usuarioRepository;
 
     @Mock
     private ModelMapper modelMapper;
-
-    @InjectMocks
-    private UsuarioService usuarioService;
 
     private UsuarioModel usuarioModel;
     private UsuarioDto usuarioDto;
@@ -55,6 +44,7 @@ public class UsuarioServiceTest {
         usuarioModel.setSenha("password");
 
         usuarioDto = new UsuarioDto();
+        usuarioDto.setId(1L);
         usuarioDto.setNome("Test User");
         usuarioDto.setSenha("password");
 
@@ -65,9 +55,10 @@ public class UsuarioServiceTest {
 
     @Test
     public void testDelete() {
-        doNothing().when(usuarioRepository).deleteById(1L);
-        usuarioService.delete(1L);
-        verify(usuarioRepository, times(1)).deleteById(1L);
+        Long id = 1L;
+        doNothing().when(usuarioRepository).deleteById(id);
+        usuarioService.delete(id);
+        verify(usuarioRepository, times(1)).deleteById(id);
     }
 
     @Test
@@ -82,49 +73,50 @@ public class UsuarioServiceTest {
 
     @Test
     public void testUpdate() {
-        when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuarioModel));
+        Long id = 1L;
+        when(usuarioRepository.findById(id)).thenReturn(Optional.of(usuarioModel));
         when(usuarioRepository.save(any(UsuarioModel.class))).thenReturn(usuarioModel);
-        when(modelMapper.map(any(UsuarioModel.class), eq(UsuarioDto.class))).thenReturn(usuarioDto);
 
-        UsuarioDto updatedUsuario = usuarioService.update(1L, usuarioDto);
-        assertNotNull(updatedUsuario);
-        assertEquals("Test User", updatedUsuario.getNome());
+        UsuarioDto updatedDto = usuarioService.update(id, usuarioDto);
+        assertNotNull(updatedDto);
+        assertEquals("Test User", updatedDto.getNome());
     }
 
     @Test
     public void testUpdate_NotFound() {
-        when(usuarioRepository.findById(1L)).thenReturn(Optional.empty());
+        Long id = 1L;
+        when(usuarioRepository.findById(id)).thenReturn(Optional.empty());
 
-        UsuarioDto updatedUsuario = usuarioService.update(1L, usuarioDto);
-        assertNull(updatedUsuario);
+        UsuarioDto updatedDto = usuarioService.update(id, usuarioDto);
+        assertNull(updatedDto);
     }
 
     @Test
     public void testSave() {
-        when(modelMapper.map(any(UsuarioCreateRequest.class), eq(UsuarioModel.class))).thenReturn(usuarioModel);
         when(usuarioRepository.save(any(UsuarioModel.class))).thenReturn(usuarioModel);
-        when(modelMapper.map(any(UsuarioModel.class), eq(UsuarioDto.class))).thenReturn(usuarioDto);
 
-        UsuarioDto savedUsuario = usuarioService.save(usuarioCreateRequest);
-        assertNotNull(savedUsuario);
-        assertEquals("Test User", savedUsuario.getNome());
+        UsuarioDto savedDto = usuarioService.save(usuarioCreateRequest);
+        assertNotNull(savedDto);
+        assertEquals("Test User", savedDto.getNome());
     }
 
     @Test
     public void testFindById() {
-        when(usuarioRepository.findById(1L)).thenReturn(Optional.of(usuarioModel));
+        Long id = 1L;
+        when(usuarioRepository.findById(id)).thenReturn(Optional.of(usuarioModel));
         when(modelMapper.map(any(UsuarioModel.class), eq(UsuarioDto.class))).thenReturn(usuarioDto);
 
-        UsuarioDto foundUsuario = usuarioService.findById(1L);
-        assertNotNull(foundUsuario);
-        assertEquals("Test User", foundUsuario.getNome());
+        UsuarioDto foundDto = usuarioService.findById(id);
+        assertNotNull(foundDto);
+        assertEquals("Test User", foundDto.getNome());
     }
 
     @Test
     public void testFindById_NotFound() {
-        when(usuarioRepository.findById(1L)).thenReturn(Optional.empty());
+        Long id = 1L;
+        when(usuarioRepository.findById(id)).thenReturn(Optional.empty());
 
-        UsuarioDto foundUsuario = usuarioService.findById(1L);
-        assertNull(foundUsuario);
+        UsuarioDto foundDto = usuarioService.findById(id);
+        assertNull(foundDto);
     }
 }

@@ -13,7 +13,6 @@ public class MedicoModel {
     private Long id;
     private String nome;
     private String crm;
-    private String senha;
 
     @ManyToOne
     @JoinColumn(name = "especialidade_id")

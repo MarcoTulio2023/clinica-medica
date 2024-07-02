@@ -36,7 +36,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.32</version>
+                <version>1.18.32</version> <!-- Use a versão mais recente disponível -->
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -51,37 +51,34 @@
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>5.10.3</version>
-                <scope>testes</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
-                <version>5.10.3</version>
-                <scope>testes</scope>
+                <version>5.8.1</version>
+                <scope>test</scope>
             </dependency>
+
+            <!-- Mockito dependency -->
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>5.12.0</version>
-                <scope>testes</scope>
+                <version>3.12.4</version>
+                <scope>test</scope>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-junit-jupiter</artifactId>
                 <version>5.12.0</version>
-                <scope>testes</scope>
+                <scope>test</scope>
             </dependency>
+
+            <!--Swagger -->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <version>3.3.0</version>
-                <scope>testes</scope>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>2.5.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <build>
         <plugins>
             <plugin>
