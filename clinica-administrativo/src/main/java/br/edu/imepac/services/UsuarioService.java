@@ -6,9 +6,6 @@ import br.edu.imepac.dtos.UsuarioDto;
 import br.edu.imepac.models.ConvenioModel;
 import br.edu.imepac.models.UsuarioModel;
 import br.edu.imepac.repositories.UsuarioRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
@@ -18,7 +15,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Slf4j
 public class UsuarioService {
 
     @Autowired
@@ -26,8 +22,6 @@ public class UsuarioService {
 
     @Autowired
     private ModelMapper modelMapper;
-
-    //private static final Logger logger = LoggerFactory.getLogger(UsuarioService.class);
 
     public void delete(Long id) {
         usuarioRepository.deleteById(id);
@@ -61,26 +55,20 @@ public class UsuarioService {
     }
 
     public UsuarioDto save(UsuarioCreateRequest usuarioRequest) {
-        try {
-            UsuarioModel usuarioModel = new UsuarioModel();
-            usuarioModel.setNome(usuarioRequest.getNome());
-            usuarioModel.setSenha(usuarioRequest.getSenha());
+        UsuarioModel usuarioModel = new UsuarioModel();
+        usuarioModel.setNome(usuarioRequest.getNome());
+        usuarioModel.setSenha(usuarioRequest.getSenha());
 
 
-            UsuarioModel savedUsuario = usuarioRepository.save(usuarioModel);
+        UsuarioModel savedUsuario = usuarioRepository.save(usuarioModel);
 
-            UsuarioDto usuarioDto = new UsuarioDto();
-            usuarioDto.setId(savedUsuario.getId_usuario());
-            usuarioDto.setNome(savedUsuario.getNome());
-            usuarioDto.setSenha(savedUsuario.getSenha());
+        UsuarioDto usuarioDto = new UsuarioDto();
+        usuarioDto.setId(savedUsuario.getId_usuario());
+        usuarioDto.setNome(savedUsuario.getNome());
+        usuarioDto.setSenha(savedUsuario.getSenha());
 
-            log.info("Usuário {} foi salvo com sucesso.", usuarioRequest.getNome());
-            return usuarioDto;
-        }
-        catch (Exception e) {
-            log.error("Ocorreu um erro com {}", usuarioRequest.getNome(), e);
-            return new UsuarioDto();
-        }
+
+        return usuarioDto;
     }
 
     public UsuarioDto findById(Long id) {
