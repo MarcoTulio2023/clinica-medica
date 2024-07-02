@@ -1,11 +1,14 @@
 package br.edu.imepac.services;
 
+import br.edu.imepac.dtos.ConvenioDto;
 import br.edu.imepac.dtos.EspecialidadeCreateRequest;
 import br.edu.imepac.dtos.EspecialidadeDto;
+import br.edu.imepac.models.ConvenioModel;
 import br.edu.imepac.models.EspecialidadeModel;
 import br.edu.imepac.repositories.EspecialidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,19 +20,18 @@ public class EspecialidadeService {
     @Autowired
     private EspecialidadeRepository especialidadeRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     public void delete(Long id) {
         especialidadeRepository.deleteById(id);
     }
 
     public List<EspecialidadeDto> findAll() {
         List<EspecialidadeModel> especialidades = especialidadeRepository.findAll();
-        return especialidades.stream().map(especialidade -> {
-            EspecialidadeDto especialidadeDto = new EspecialidadeDto();
-            especialidadeDto.setId(especialidade.getId());
-            especialidadeDto.setNome(especialidade.getNome());
-            especialidadeDto.setDescricao(especialidade.getDescricao());
-            return especialidadeDto;
-        }).collect(Collectors.toList());
+        return especialidades.stream()
+                .map(especialidade -> modelMapper.map(especialidade, EspecialidadeDto.class))
+                .collect(Collectors.toList());
     }
 
     public EspecialidadeDto update(Long id, EspecialidadeDto especialidadeDetails) {
@@ -37,15 +39,16 @@ public class EspecialidadeService {
 
         if (optionalEspecialidade.isPresent()) {
             EspecialidadeModel especialidadeModel = optionalEspecialidade.get();
+            especialidadeModel.setId(especialidadeDetails.getId());
             especialidadeModel.setNome(especialidadeDetails.getNome());
             especialidadeModel.setDescricao(especialidadeDetails.getDescricao());
 
-            EspecialidadeModel updatedEspecialidade = especialidadeRepository.save(especialidadeModel);
+            EspecialidadeModel updatesEspeccialidade = especialidadeRepository.save(especialidadeModel);
 
             EspecialidadeDto especialidadeDto = new EspecialidadeDto();
-            especialidadeDto.setId(updatedEspecialidade.getId());
-            especialidadeDto.setNome(updatedEspecialidade.getNome());
-            especialidadeDto.setDescricao(updatedEspecialidade.getDescricao());
+            especialidadeDto.setId(updatesEspeccialidade.getId());
+            especialidadeDto.setNome(updatesEspeccialidade.getNome());
+            especialidadeDto.setDescricao(updatesEspeccialidade.getDescricao());
 
             return especialidadeDto;
         } else {
@@ -54,31 +57,13 @@ public class EspecialidadeService {
     }
 
     public EspecialidadeDto save(EspecialidadeCreateRequest especialidadeRequest) {
-        EspecialidadeModel especialidadeModel = new EspecialidadeModel();
-        especialidadeModel.setNome(especialidadeRequest.getNome());
-        especialidadeModel.setDescricao(especialidadeRequest.getDescricao());
-
+        EspecialidadeModel especialidadeModel = modelMapper.map(especialidadeRequest, EspecialidadeModel.class);
         EspecialidadeModel savedEspecialidade = especialidadeRepository.save(especialidadeModel);
-
-        EspecialidadeDto especialidadeDto = new EspecialidadeDto();
-        especialidadeDto.setId(savedEspecialidade.getId());
-        especialidadeDto.setNome(savedEspecialidade.getNome());
-        especialidadeDto.setDescricao(savedEspecialidade.getDescricao());
-
-        return especialidadeDto;
+        return modelMapper.map(savedEspecialidade, EspecialidadeDto.class);
     }
 
     public EspecialidadeDto findById(Long id) {
         Optional<EspecialidadeModel> optionalEspecialidade = especialidadeRepository.findById(id);
-        if (optionalEspecialidade.isPresent()) {
-            EspecialidadeModel especialidadeModel = optionalEspecialidade.get();
-            EspecialidadeDto especialidadeDto = new EspecialidadeDto();
-            especialidadeDto.setId(especialidadeModel.getId());
-            especialidadeDto.setNome(especialidadeModel.getNome());
-            especialidadeDto.setDescricao(especialidadeModel.getDescricao());
-            return especialidadeDto;
-        } else {
-            return null;
-        }
+        return optionalEspecialidade.map(especialidade -> modelMapper.map(especialidade, EspecialidadeDto.class)).orElse(null);
     }
 }

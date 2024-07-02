@@ -7,10 +7,11 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 
-public class ClinicaAdministrativo {
+public class ClinicaAgendamento {
     public static void main(String[] args) {
-        SpringApplication.run(ClinicaAdministrativo.class, args);
+        SpringApplication.run(ClinicaAgendamento.class, args);
     }
+
 
 
 }
