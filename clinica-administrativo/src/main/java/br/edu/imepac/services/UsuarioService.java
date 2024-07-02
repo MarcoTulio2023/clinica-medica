@@ -6,6 +6,7 @@ import br.edu.imepac.dtos.UsuarioDto;
 import br.edu.imepac.models.ConvenioModel;
 import br.edu.imepac.models.UsuarioModel;
 import br.edu.imepac.repositories.UsuarioRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class UsuarioService {
 
     @Autowired
@@ -55,20 +57,26 @@ public class UsuarioService {
     }
 
     public UsuarioDto save(UsuarioCreateRequest usuarioRequest) {
-        UsuarioModel usuarioModel = new UsuarioModel();
-        usuarioModel.setNome(usuarioRequest.getNome());
-        usuarioModel.setSenha(usuarioRequest.getSenha());
+        try {
+            UsuarioModel usuarioModel = new UsuarioModel();
+            usuarioModel.setNome(usuarioRequest.getNome());
+            usuarioModel.setSenha(usuarioRequest.getSenha());
 
 
-        UsuarioModel savedUsuario = usuarioRepository.save(usuarioModel);
+            UsuarioModel savedUsuario = usuarioRepository.save(usuarioModel);
 
-        UsuarioDto usuarioDto = new UsuarioDto();
-        usuarioDto.setId(savedUsuario.getId_usuario());
-        usuarioDto.setNome(savedUsuario.getNome());
-        usuarioDto.setSenha(savedUsuario.getSenha());
+            UsuarioDto usuarioDto = new UsuarioDto();
+            usuarioDto.setId(savedUsuario.getId_usuario());
+            usuarioDto.setNome(savedUsuario.getNome());
+            usuarioDto.setSenha(savedUsuario.getSenha());
 
-
-        return usuarioDto;
+            log.info("Usuário {} foi salvo com sucesso.", usuarioRequest.getNome());
+            return usuarioDto;
+        }
+        catch (Exception e) {
+            log.error("Ocorreu um erro com {}", usuarioRequest.getNome(), e);
+            return new UsuarioDto();
+        }
     }
 
     public UsuarioDto findById(Long id) {
