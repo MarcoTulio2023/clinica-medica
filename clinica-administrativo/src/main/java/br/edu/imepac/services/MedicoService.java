@@ -42,6 +42,7 @@ public class MedicoService {
             MedicoModel medicoModel = optionalMedico.get();
 
             // Mapeia os detalhes do DTO para o modelo, exceto a especialidade
+            medicoModel.setId(id);
             medicoModel.setNome(medicoDetails.getNome());
             medicoModel.setCrm(medicoDetails.getCrm());
 
@@ -51,8 +52,26 @@ public class MedicoService {
                 optionalEspecialidade.ifPresent(medicoModel::setEspecialidade);
             }
 
+<<<<<<< Updated upstream
             MedicoModel updatedMedico = medicoRepository.save(medicoModel);
             return modelMapper.map(updatedMedico, MedicoDto.class);
+=======
+            //Realiza o mesmo procedimento porem com o medico DTO
+            MedicoModel updatedmedico = medicoRepository.save(medicoModel);
+            MedicoDto medicoDto = new MedicoDto();
+            medicoDto.setId(updatedmedico.getId());
+            medicoDto.setNome(updatedmedico.getNome());
+            medicoDto.setCrm(updatedmedico.getCrm());
+
+            //Aqui lida com o save da especialidade
+            if (updatedmedico.getEspecialidade() != null){
+                EspecialidadeDto especialidadeDto = new EspecialidadeDto();
+                especialidadeDto.setId(updatedmedico.getEspecialidade().getId());
+                especialidadeDto.setNome(updatedmedico.getEspecialidade().getNome());
+                medicoDto.setEspecialidade(especialidadeDto);
+            }
+
+>>>>>>> Stashed changes
         } else {
             return null;
         }

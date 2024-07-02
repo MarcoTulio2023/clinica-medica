@@ -42,11 +42,49 @@ public class ConsultService {
 
             ConsultModel updatedEspecialidade = consultRepository.save(consultModel);
 
+<<<<<<< Updated upstream
             // Converte a entidade atualizada de volta para DTO
             return modelMapper.map(updatedEspecialidade, ConsultDTO.class);
+=======
+            if (consultDetails.getPaciente() != null) {
+                Optional<PacienteModel> paciente = pacienteRepository.findById(consultDetails.getPaciente().getId_paciente());
+                paciente.ifPresent(consultModel::setPaciente);
+            }
+            if (consultDetails.getUsuario() != null) {
+                Optional<UsuarioModel> usuario = usuarioRepository.findById(consultDetails.getUsuario().getId_usuario());
+                usuario.ifPresent(consultModel::setUsuario);
+            }
+
+            ConsultModel updatedconsult = consultRepository.save(consultModel);
+            ConsultDTO consultDto = new ConsultDTO();
+            consultDto.setRegistro_agenda(updatedconsult.getRegistro_agenda());
+            consultDto.setHora_agenda(updatedconsult.getHora_agenda());
+            consultDto.setData_agenda(updatedconsult.getData_agenda());
+            consultDto.setRetorno(updatedconsult.isRetorno());
+            consultDto.setCancelado(updatedconsult.isCancelado());
+            consultDto.setMotivo_cancelamento(consultDetails.getMotivo_cancelamento());
+            consultDto.setMedico(consultDetails.getMedico());
+            consultDto.setPaciente(consultDetails.getPaciente());
+            consultDto.setUsuario(consultDetails.getUsuario());
+
+            if (updatedconsult.getMedico() != null) {
+                Optional<MedicoModel> medico = medicoRepository.findById(consultDetails.getMedico().getId());
+                medico.ifPresent(consultModel::setMedico);
+            }
+            if (updatedconsult.getPaciente() != null) {
+                Optional<PacienteModel> paciente = pacienteRepository.findById(consultDetails.getPaciente().getId_paciente());
+                paciente.ifPresent(consultModel::setPaciente);
+            }
+            if (updatedconsult.getUsuario() != null) {
+                Optional<UsuarioModel> usuario = usuarioRepository.findById(consultDetails.getUsuario().getId_usuario());
+                usuario.ifPresent(consultModel::setUsuario);
+            }
+
+>>>>>>> Stashed changes
         } else {
             return null;
         }
+        return consultDetails;
     }
 
     public ConsultDTO save(ConsultCreateRequest consultaRequest) {

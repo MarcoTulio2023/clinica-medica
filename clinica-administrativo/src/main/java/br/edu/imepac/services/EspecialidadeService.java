@@ -37,6 +37,12 @@ public class EspecialidadeService {
 
         if (optionalEspecialidade.isPresent()) {
             EspecialidadeModel especialidadeModel = optionalEspecialidade.get();
+<<<<<<< Updated upstream
+=======
+            especialidadeModel.setId(id);
+            especialidadeModel.setNome(especialidadeDetails.getNome());
+            especialidadeModel.setDescricao(especialidadeDetails.getDescricao());
+>>>>>>> Stashed changes
 
             // Mapeia as propriedades do DTO para a entidade existente
             modelMapper.map(especialidadeDetails, especialidadeModel);
