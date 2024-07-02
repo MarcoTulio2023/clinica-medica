@@ -56,7 +56,7 @@ public class UsuarioService {
 
     public UsuarioDto save(UsuarioCreateRequest usuarioRequest) {
         UsuarioModel usuarioModel = new UsuarioModel();
-        usuarioModel.setNome(usuarioRequest.getSenha());
+        usuarioModel.setNome(usuarioRequest.getNome());
         usuarioModel.setSenha(usuarioRequest.getSenha());
 
 
