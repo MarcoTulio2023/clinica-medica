@@ -1,5 +1,6 @@
 package br.edu.imepac.services;
 
+import br.edu.imepac.dtos.EspecialidadeDto;
 import br.edu.imepac.dtos.MedicoCreateRequest;
 import br.edu.imepac.dtos.MedicoDto;
 import br.edu.imepac.models.EspecialidadeModel;
@@ -25,6 +26,8 @@ public class MedicoService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+
 
     public void delete(Long id) {
         medicoRepository.deleteById(id);
@@ -53,22 +56,46 @@ public class MedicoService {
 
             MedicoModel updatedmedico = medicoRepository.save(medicoModel);
             MedicoDto medicoDto = new MedicoDto();
-            medicoDto.setId();
+            medicoDto.setId(updatedmedico.getId());
+            medicoDto.setNome(updatedmedico.getNome());
+            medicoDto.setCrm(updatedmedico.getCrm());
+            if (updatedmedico.getEspecialidade() != null){
+                EspecialidadeDto especialidadeDto = new EspecialidadeDto();
+                especialidadeDto.setId(updatedmedico.getEspecialidade().getId());
+                especialidadeDto.setNome(updatedmedico.getEspecialidade().getNome());
+                medicoDto.setEspecialidade(especialidadeDto);
+            }
+
         } else {
             return null;
         }
+        return medicoDetails;
     }
 
     public MedicoDto save(MedicoCreateRequest medicoRequest) {
-        MedicoModel medicoModel = modelMapper.map(medicoRequest, MedicoModel.class);
+       MedicoModel medicoModel = new MedicoModel();
+       medicoModel.setNome(medicoRequest.getNome());
+       medicoModel.setCrm(medicoRequest.getCrm());
+       if (medicoRequest.getEspecialidade() != null){
+           Optional<EspecialidadeModel> optionalEspecialidade = especialidadeRepository.findById(medicoRequest.getEspecialidade().getId());
+           optionalEspecialidade.ifPresent(medicoModel::setEspecialidade);
+       }
 
-        if (medicoRequest.getEspecialidade() != null) {
-            Optional<EspecialidadeModel> optionalEspecialidade = especialidadeRepository.findById(medicoRequest.getEspecialidade().getId());
-            optionalEspecialidade.ifPresent(medicoModel::setEspecialidade);
+        MedicoModel updatedmedico = medicoRepository.save(medicoModel);
+        MedicoDto medicoDto = new MedicoDto();
+        medicoDto.setId(updatedmedico.getId());
+        medicoDto.setNome(updatedmedico.getNome());
+        medicoDto.setCrm(updatedmedico.getCrm());
+        if (updatedmedico.getEspecialidade() != null){
+            EspecialidadeDto especialidadeDto = new EspecialidadeDto();
+            especialidadeDto.setId(updatedmedico.getEspecialidade().getId());
+            especialidadeDto.setNome(updatedmedico.getEspecialidade().getNome());
+            medicoDto.setEspecialidade(especialidadeDto);
+
+            return medicoDto;
         }
 
-        MedicoModel savedMedico = medicoRepository.save(medicoModel);
-        return modelMapper.map(savedMedico, MedicoDto.class);
+        return medicoDto;
     }
 
     public MedicoDto findById(Long id) {

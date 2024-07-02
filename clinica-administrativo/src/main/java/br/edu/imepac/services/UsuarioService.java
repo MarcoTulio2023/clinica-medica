@@ -1,7 +1,9 @@
 package br.edu.imepac.services;
 
+import br.edu.imepac.dtos.ConvenioDto;
 import br.edu.imepac.dtos.UsuarioCreateRequest;
 import br.edu.imepac.dtos.UsuarioDto;
+import br.edu.imepac.models.ConvenioModel;
 import br.edu.imepac.models.UsuarioModel;
 import br.edu.imepac.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,23 +33,42 @@ public class UsuarioService {
     }
 
     public UsuarioDto update(Long id, UsuarioDto usuarioDetails) {
-        Optional<UsuarioModel> optionalUsuario = usuarioRepository.findById(id);
+        Optional<UsuarioModel> optionalUsuarioModel = usuarioRepository.findById(id);
 
-        if (optionalUsuario.isPresent()) {
-            UsuarioModel usuarioModel = optionalUsuario.get();
+        if (optionalUsuarioModel.isPresent()) {
+            UsuarioModel usuarioModel = optionalUsuarioModel.get();
             usuarioModel.setNome(usuarioDetails.getNome());
             usuarioModel.setSenha(usuarioDetails.getSenha());
-            UsuarioModel updatedUsuario = usuarioRepository.save(usuarioModel);
-            return modelMapper.map(updatedUsuario, UsuarioDto.class);
+
+
+            UsuarioModel updatedModel = usuarioRepository.save(usuarioModel);
+
+            UsuarioDto usuarioDto = new UsuarioDto();
+            usuarioDto.setId(updatedModel.getId_usuario());
+            usuarioDto.setNome(updatedModel.getNome());
+            usuarioDto.setSenha(updatedModel.getSenha());
+
+            return usuarioDto;
         } else {
             return null;
         }
     }
 
     public UsuarioDto save(UsuarioCreateRequest usuarioRequest) {
-        UsuarioModel usuarioModel = modelMapper.map(usuarioRequest, UsuarioModel.class);
+        UsuarioModel usuarioModel = new UsuarioModel();
+        usuarioModel.setNome(usuarioRequest.getSenha());
+        usuarioModel.setSenha(usuarioRequest.getSenha());
+
+
         UsuarioModel savedUsuario = usuarioRepository.save(usuarioModel);
-        return modelMapper.map(savedUsuario, UsuarioDto.class);
+
+        UsuarioDto usuarioDto = new UsuarioDto();
+        usuarioDto.setId(savedUsuario.getId_usuario());
+        usuarioDto.setNome(savedUsuario.getNome());
+        usuarioDto.setSenha(savedUsuario.getSenha());
+
+
+        return usuarioDto;
     }
 
     public UsuarioDto findById(Long id) {
