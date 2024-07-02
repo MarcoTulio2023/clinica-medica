@@ -46,3 +46,105 @@
 2024-07-02 20:01:57 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-07-02 20:01:57 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2024-07-02 20:01:57 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-07-02 20:19:18 INFO  br.edu.imepac.ClinicaAdministrativo - Starting ClinicaAdministrativo using Java 21.0.1 with PID 12292 (C:\Users\homar\Documents\GitHub\trabalho\clinica-medica\clinica-administrativo\target\classes started by homar in C:\Users\homar\Documents\GitHub\trabalho\clinica-medica)
+2024-07-02 20:19:18 DEBUG br.edu.imepac.ClinicaAdministrativo - Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-07-02 20:19:18 INFO  br.edu.imepac.ClinicaAdministrativo - The following 1 profile is active: "prod"
+2024-07-02 20:19:19 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-02 20:19:19 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 69 ms. Found 7 JPA repository interfaces.
+2024-07-02 20:19:20 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 2001 (http)
+2024-07-02 20:19:20 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-2001"]
+2024-07-02 20:19:20 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-02 20:19:20 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-02 20:19:20 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-02 20:19:20 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1236 ms
+2024-07-02 20:19:20 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-02 20:19:20 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-07-02 20:19:20 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-07-02 20:19:20 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-02 20:19:20 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-07-02 20:19:20 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e8d9bb6
+2024-07-02 20:19:20 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-07-02 20:19:20 WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-07-02 20:19:21 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-02 20:19:21 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-02 20:19:22 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-02 20:19:22 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 31 mappings in 'requestMappingHandlerMapping'
+2024-07-02 20:19:22 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-07-02 20:19:22 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-07-02 20:19:22 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-07-02 20:19:22 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-2001"]
+2024-07-02 20:19:22 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 2001 (http) with context path ''
+2024-07-02 20:19:22 INFO  br.edu.imepac.ClinicaAdministrativo - Started ClinicaAdministrativo in 4.194 seconds (process running for 4.888)
+2024-07-02 20:20:00 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-02 20:20:00 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-07-02 20:20:00 DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2024-07-02 20:20:00 DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2024-07-02 20:20:00 DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2024-07-02 20:20:00 DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@659565ed
+2024-07-02 20:20:00 DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@b8c6406
+2024-07-02 20:20:00 DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-07-02 20:20:00 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-07-02 20:20:00 DEBUG o.s.web.servlet.DispatcherServlet - POST "/pacientes", parameters={}
+2024-07-02 20:20:00 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to br.edu.imepac.controllers.PacienteController#savePaciente(PacienteCreateRequest)
+2024-07-02 20:20:00 DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [PacienteCreateRequest(nome=Hugo, numeroRg=123456789, orgaoEmissor=SSP, numeroCpf=123.456.789-00, end (truncated)...]
+2024-07-02 20:20:00 INFO  b.e.imepac.services.PacienteService - Paciente Hugo foi salvo com sucesso.
+2024-07-02 20:20:00 DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-07-02 20:20:00 DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PacienteDto(id=4, nome=Hugo, numeroRg=123456789, orgaoEmissor=SSP, numeroCpf=123.456.789-00, enderec (truncated)...]
+2024-07-02 20:20:00 DEBUG o.s.web.servlet.DispatcherServlet - Completed 201 CREATED
+2024-07-02 20:20:17 DEBUG o.s.web.servlet.DispatcherServlet - POST "/medico", parameters={}
+2024-07-02 20:20:17 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to br.edu.imepac.controllers.MedicoController#saveMedico(MedicoCreateRequest)
+2024-07-02 20:20:17 DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [MedicoCreateRequest(nome=Hugo3, crm=1355, especialidade=EspecialidadeDto(id=1, nome=null, descricao= (truncated)...]
+2024-07-02 20:20:17 DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-07-02 20:20:17 DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [MedicoDto(id=4, nome=Hugo3, crm=1355, especialidade=EspecialidadeDto(id=1, nome=Cardiologista2, desc (truncated)...]
+2024-07-02 20:20:17 DEBUG o.s.web.servlet.DispatcherServlet - Completed 201 CREATED
+2024-07-02 20:20:58 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-02 20:20:58 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-07-02 20:20:58 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-07-02 20:21:17 INFO  br.edu.imepac.ClinicaAdministrativo - Starting ClinicaAdministrativo using Java 21.0.1 with PID 14644 (C:\Users\homar\Documents\GitHub\trabalho\clinica-medica\clinica-administrativo\target\classes started by homar in C:\Users\homar\Documents\GitHub\trabalho\clinica-medica)
+2024-07-02 20:21:17 DEBUG br.edu.imepac.ClinicaAdministrativo - Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-07-02 20:21:17 INFO  br.edu.imepac.ClinicaAdministrativo - The following 1 profile is active: "prod"
+2024-07-02 20:21:18 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-02 20:21:18 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 61 ms. Found 7 JPA repository interfaces.
+2024-07-02 20:21:18 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 2001 (http)
+2024-07-02 20:21:18 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-2001"]
+2024-07-02 20:21:18 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-02 20:21:18 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-02 20:21:18 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-02 20:21:18 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1294 ms
+2024-07-02 20:21:19 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-02 20:21:19 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-07-02 20:21:19 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-07-02 20:21:19 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-02 20:21:19 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-07-02 20:21:19 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e8d9bb6
+2024-07-02 20:21:19 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-07-02 20:21:19 WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-07-02 20:21:20 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-02 20:21:20 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-02 20:21:21 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-02 20:21:21 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 31 mappings in 'requestMappingHandlerMapping'
+2024-07-02 20:21:21 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-07-02 20:21:21 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-07-02 20:21:21 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-07-02 20:21:21 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-2001"]
+2024-07-02 20:21:21 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 2001 (http) with context path ''
+2024-07-02 20:21:21 INFO  br.edu.imepac.ClinicaAdministrativo - Started ClinicaAdministrativo in 4.573 seconds (process running for 5.282)
+2024-07-02 20:30:54 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-02 20:30:54 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-07-02 20:30:54 DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2024-07-02 20:30:54 DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2024-07-02 20:30:54 DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2024-07-02 20:30:54 DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@23243bc0
+2024-07-02 20:30:54 DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@47f8374
+2024-07-02 20:30:54 DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-07-02 20:30:54 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-07-02 20:30:54 DEBUG o.s.web.servlet.DispatcherServlet - POST "/medico", parameters={}
+2024-07-02 20:30:54 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to br.edu.imepac.controllers.MedicoController#saveMedico(MedicoCreateRequest)
+2024-07-02 20:30:54 DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [MedicoCreateRequest(nome=Hugo5, crm=1355, especialidade=EspecialidadeDto(id=1, nome=null, descricao= (truncated)...]
+2024-07-02 20:30:54 INFO  b.edu.imepac.services.MedicoService - Paciente Hugo5 foi salvo com sucesso.
+2024-07-02 20:30:54 DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-07-02 20:30:54 DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [MedicoDto(id=5, nome=Hugo5, crm=1355, especialidade=EspecialidadeDto(id=1, nome=Cardiologista2, desc (truncated)...]
+2024-07-02 20:30:54 DEBUG o.s.web.servlet.DispatcherServlet - Completed 201 CREATED
+2024-07-02 20:35:29 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-02 20:35:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-07-02 20:35:29 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

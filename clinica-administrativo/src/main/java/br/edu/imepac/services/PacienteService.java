@@ -6,6 +6,7 @@ import br.edu.imepac.models.ConvenioModel;
 import br.edu.imepac.models.PacienteModel;
 import br.edu.imepac.repositories.ConvenioRepository;
 import br.edu.imepac.repositories.PacienteRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class PacienteService {
 
     @Autowired
@@ -79,6 +81,8 @@ public class PacienteService {
         }
 
         PacienteModel savedPaciente = pacienteRepository.save(pacienteModel);
+
+        log.info("Paciente {} foi salvo com sucesso.", pacienteModel.getNome());
         return modelMapper.map(savedPaciente, PacienteDto.class);
     }
 

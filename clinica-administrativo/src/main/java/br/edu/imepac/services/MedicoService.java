@@ -7,6 +7,7 @@ import br.edu.imepac.models.EspecialidadeModel;
 import br.edu.imepac.models.MedicoModel;
 import br.edu.imepac.repositories.EspecialidadeRepository;
 import br.edu.imepac.repositories.MedicoRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class MedicoService {
 
     @Autowired
@@ -92,6 +94,7 @@ public class MedicoService {
             especialidadeDto.setNome(updatedmedico.getEspecialidade().getNome());
             medicoDto.setEspecialidade(especialidadeDto);
 
+            log.info("Médico {} foi salvo com sucesso.", medicoRequest.getNome());
             return medicoDto;
         }
 

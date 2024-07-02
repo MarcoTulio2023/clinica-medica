@@ -4,6 +4,7 @@ import br.edu.imepac.dtos.ConvenioCreateRequest;
 import br.edu.imepac.dtos.ConvenioDto;
 import br.edu.imepac.models.ConvenioModel;
 import br.edu.imepac.repositories.ConvenioRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class ConvenioService {
 
     @Autowired
@@ -75,6 +77,7 @@ public class ConvenioService {
         convenioDto.setCobertura(savedConvenio.getCobertura());
         convenioDto.setInformacoesContato(savedConvenio.getInformacoesContato());
 
+        log.info("Convenio {} foi salvo com sucesso.", convenioRequest.getNome());
         return convenioDto;
     }
 

@@ -6,6 +6,7 @@ import br.edu.imepac.dtos.EspecialidadeDto;
 import br.edu.imepac.models.ConvenioModel;
 import br.edu.imepac.models.EspecialidadeModel;
 import br.edu.imepac.repositories.EspecialidadeRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class EspecialidadeService {
 
     @Autowired
@@ -59,6 +61,8 @@ public class EspecialidadeService {
     public EspecialidadeDto save(EspecialidadeCreateRequest especialidadeRequest) {
         EspecialidadeModel especialidadeModel = modelMapper.map(especialidadeRequest, EspecialidadeModel.class);
         EspecialidadeModel savedEspecialidade = especialidadeRepository.save(especialidadeModel);
+
+        log.info("Especialidade {} foi salva com sucesso.", especialidadeRequest.getNome());
         return modelMapper.map(savedEspecialidade, EspecialidadeDto.class);
     }
 
