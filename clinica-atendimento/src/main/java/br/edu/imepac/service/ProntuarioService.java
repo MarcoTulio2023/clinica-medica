@@ -3,7 +3,11 @@ package br.edu.imepac.service;
 import br.edu.imepac.dto.ProntuarioCreateRequest;
 import br.edu.imepac.dto.ProntuarioDto;
 import br.edu.imepac.model.ConsultModel;
+import br.edu.imepac.models.MedicoModel;
+import br.edu.imepac.models.PacienteModel;
 import br.edu.imepac.models.ProntuarioModel;
+import br.edu.imepac.models.UsuarioModel;
+import br.edu.imepac.repositories.ConsultRepository;
 import br.edu.imepac.repositories.ProntuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,9 @@ public class ProntuarioService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private ConsultRepository consultRepository;
+
     public void delete(Long id) {
         prontuarioRepository.deleteById(id);
     }
@@ -39,13 +46,20 @@ public class ProntuarioService {
         if (optionalProntuario.isPresent()) {
             ProntuarioModel prontuarioModel = optionalProntuario.get();
 
-            // Mapeia as propriedades do DTO para a entidade existente
-            modelMapper.map(especialidadeDetails, prontuarioModel);
+            prontuarioModel.setNum_pront(id);
+            prontuarioModel.setExames(especialidadeDetails.getExames());
+            prontuarioModel.setReceituario(especialidadeDetails.getReceituario());
+            prontuarioModel.setHistorico(especialidadeDetails.getHistorico());
 
-            ProntuarioModel updatedProntuario = prontuarioRepository.save(prontuarioModel);
 
-            // Converte a entidade atualizada de volta para DTO
-            return modelMapper.map(updatedProntuario, ProntuarioDto.class);
+            if (especialidadeDetails.getAgenda_consulta() != null) {
+                Optional<ConsultModel> medico = consultRepository.findById(especialidadeDetails.getAgenda_consulta().getRegistro_agenda());
+                medico.ifPresent(prontuarioModel::setAgenda_consulta);
+            }
+
+
+            ProntuarioModel updatedprontuario = prontuarioRepository.save(prontuarioModel);
+            return modelMapper.map(updatedprontuario, ProntuarioDto.class);
         } else {
             return null;
         }
